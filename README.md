@@ -1,2 +1,2 @@
-# Data_Visualization
-A data visualization project for GDP data
+# GDP-Data-Visualization
+SCU数据可视化课程项目作业
