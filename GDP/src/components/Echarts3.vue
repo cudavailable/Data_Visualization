@@ -110,7 +110,7 @@
             left: 120,
           },
           xAxis: {
-            name: "数字经济指数",
+            name: "数字经济",
           },
           yAxis: {
             name: "融合指数",
