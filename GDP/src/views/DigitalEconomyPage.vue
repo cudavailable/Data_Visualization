@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <h2>数字经济——创新驱动的新时代</h2>
-    <DigitalEconomyChart />
+    <DigitalEconomyChart :chartData="data" :categories="categories"/>
   </div>
 </template>
 
@@ -12,7 +12,13 @@ export default {
   name: 'DigitalEconomyPage',
   components: {
     DigitalEconomyChart,
-  }
+  },
+  data() {
+    return {
+      data: [70, 100, 220, 340],
+      categories: ['2020年', '2021年', '2022年', '2023年'],
+    };
+  },
 };
 </script>
 
