@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "echarts": "^5.5.1",
+    "echarts-stat": "^1.2.0",
     "vue": "^3.2.8",
     "vue-fullpage.js": "^0.2.20",
     "vue-router": "^4.4.5"
