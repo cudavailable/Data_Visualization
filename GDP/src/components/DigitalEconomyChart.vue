@@ -1,6 +1,6 @@
 
 <template>
-    <div ref="chart" style="width: 100%; height: 400px;"></div>
+    <div ref="chart" style="width: 100%; height: 100%;"></div>
 </template>
   
 <script>
@@ -32,7 +32,7 @@ export default {
 
       const option = {
         title: {
-          text: "2020年—2023年工业互联网平台数量",
+          text: "2020年—2023年工业互联网平台数量（数据来源：工业和信息化部）",
         },
         tooltip: {
           trigger: "axis",
