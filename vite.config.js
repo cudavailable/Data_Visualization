@@ -10,9 +10,9 @@ export default defineConfig({
   plugins: [vue()],
   // publicPath: process.env.NODE_ENV === 'production' ? '/GDP-Data-Visualization/' : '/',
   // base: "/GDP-Data-Visualization/",
+  publicPath: '/GDP-Data-Visualization/',
   build: {
-    publicPath: './',
-    outDir: "docs",
+    // outDir: "docs",
     chunkSizeWarningLimit:1500,
     rollupOptions: {
         output:{
