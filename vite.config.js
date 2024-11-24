@@ -8,7 +8,8 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  // base: "/GDP-Data-Visualization/",
+  publicPath: process.env.NODE_ENV === 'production' ? '/GDP-Data-Visualization/' : '/',
+  base: "/GDP-Data-Visualization/",
   build: {
     // outDir: "docs",
     chunkSizeWarningLimit:1500,
