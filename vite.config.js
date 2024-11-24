@@ -11,7 +11,8 @@ export default defineConfig({
   // publicPath: process.env.NODE_ENV === 'production' ? '/GDP-Data-Visualization/' : '/',
   // base: "/GDP-Data-Visualization/",
   build: {
-    // outDir: "docs",
+    publicPath: './',
+    outDir: "docs",
     chunkSizeWarningLimit:1500,
     rollupOptions: {
         output:{
