@@ -9,7 +9,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   // publicPath: process.env.NODE_ENV === 'production' ? '/GDP-Data-Visualization/' : '/',
-  base: "/GDP-Data-Visualization/",
+  // base: "/GDP-Data-Visualization/",
   publicPath: '/GDP-Data-Visualization/',
   build: {
     // outDir: "docs",
