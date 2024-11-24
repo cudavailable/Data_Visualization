@@ -7,14 +7,9 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
-<<<<<<< HEAD
   // base: "/GDP-Data-Visualization/",
   build: {
     outDir: "docs",
-=======
-  base: "/GDP-Data-Visualization/",
-  build: {
->>>>>>> ca0d3c3 (test 2)
     chunkSizeWarningLimit:1500,
     rollupOptions: {
         output:{
