@@ -36,12 +36,12 @@
 
 <script>
 import HeaderNav from '../components/HeaderNav.vue';
-import EconomyOverview from '../views/EconomyOverview.vue';
-import AgriculturePage from '../views/AgriculturePage.vue';
-import IndustryPage from '../views/IndustryPage.vue';
-import ServicePage from '../views/ServicePage.vue';
-import DigitalEconomyPage from '../views/DigitalEconomyPage.vue';
-import GlobalRolePage from '../views/GlobalRolePage.vue';
+import EconomyOverview from './EconomyOverview.vue';
+import AgriculturePage from './AgriculturePage.vue';
+import IndustryPage from './IndustryPage.vue';
+import ServicePage from './ServicePage.vue';
+import DigitalEconomyPage from './DigitalEconomyPage.vue';
+import GlobalRolePage from './GlobalRolePage.vue';
 
 export default {
   name: 'Home',
