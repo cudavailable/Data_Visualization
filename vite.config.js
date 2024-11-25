@@ -8,11 +8,16 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  // publicPath: process.env.NODE_ENV === 'production' ? '/GDP-Data-Visualization/' : '/',
-  // base: "/GDP-Data-Visualization/",
   publicPath: '/GDP-Data-Visualization/',
+  server: {
+    port: 5000, // 固定端口
+    open: true, // 自动打开浏览器
+    cors: true, // 支持跨域
+    fs: {
+      allow: ['src', 'assets', 'public'], // 增加访问权限
+    },
+  },
   build: {
-    // outDir: "docs",
     chunkSizeWarningLimit:1500,
     rollupOptions: {
         output:{
