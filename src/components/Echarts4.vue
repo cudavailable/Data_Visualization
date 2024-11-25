@@ -28,7 +28,7 @@
       // 初始化图表
       this.chart = echarts.init(this.$refs.chart);
       this.setOption();
-      this.updateDataPeriodically();
+      // this.updateDataPeriodically();
     },
   
     beforeDestroy() {
