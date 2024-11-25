@@ -1,82 +1,281 @@
 <template>
   <div class="map-container">
-    <h2 class="map-title">时间长河中的跃迁——1952-2023年中国经济全景</h2>
+    <h2 class="map-title">中国各省GDP分布</h2>
     <div id="gdp-map" class="map"></div>
   </div>
 </template>
 
 <script>
-import * as echarts from 'echarts';
-import chinaMap from '../assets/china.json';
+import * as echarts from "echarts";
+import clustersData from "/src/assets/clusters.json";
 
 export default {
-  name: 'GDPMap',
+  name: "GDPMap",
+  props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
+    year: {
+      type: Number,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      chart: null, // 保存图表实例
+      isChartInitialized: false, // 标志位，表示图表是否已初始化
+      provinceFileMap: {
+        北京市: "beijing",
+        上海市: "shanghai",
+        天津市: "tianjin",
+        重庆市: "chongqing",
+        河北省: "hebei",
+        山西省: "shanxi",
+        内蒙古自治区: "neimeng",
+        辽宁省: "liaoning",
+        吉林省: "jilin",
+        黑龙江省: "heilongjiang",
+        江苏省: "jiangsu",
+        浙江省: "zhejiang",
+        安徽省: "anhui",
+        福建省: "fujian",
+        江西省: "jiangxi",
+        山东省: "shandong",
+        河南省: "henan",
+        湖北省: "hubei",
+        湖南省: "hunan",
+        广东省: "guangdong",
+        广西壮族自治区: "guangxi",
+        海南省: "hainan",
+        四川省: "sichuan",
+        贵州省: "guizhou",
+        云南省: "yunnan",
+        西藏自治区: "xizang",
+        陕西省: "shanxi2",
+        甘肃省: "gansu",
+        青海省: "qinghai",
+        宁夏回族自治区: "ningxia",
+        新疆维吾尔自治区: "xinjiang",
+        香港特别行政区: "xianggang",
+        澳门特别行政区: "aomen",
+        台湾省: "taiwan",
+      },
+      colorPalette: {
+        0: ["#744d5c", "#740938"],
+        1: ["#af6c95", "#AF1740"],
+        2: ["#cc80a7", "#CC2B52"],
+        3: ["#dec2cb", "#DE7C7D"],
+      },
+      clusterRanges: {},
+    };
+  },
   mounted() {
-    echarts.registerMap('china', chinaMap); // 注册中国地图
-    this.initChart();
+    // 确保 DOM 渲染完成后初始化
+    this.loadChinaMap();
+  },
+  watch: {
+    data: {
+      immediate: true,
+      handler(newData) {
+        if (this.isChartInitialized) {
+          this.updateMap(newData);
+        }
+      },
+    },
+    year(newYear) {
+      if (this.isChartInitialized) {
+        this.updateMap(this.data);
+      }
+    },
   },
   methods: {
+    // 加载中国地图数据
+    loadChinaMap() {
+      fetch("/src/assets/china.json")
+        .then((response) => response.json())
+        .then((geoJSON) => {
+          echarts.registerMap("china", geoJSON);
+          this.initChart();
+        })
+        .catch((error) => {
+          console.error("加载中国地图数据时出错:", error);
+        });
+    },
+    // 初始化图表
     initChart() {
-      const chart = echarts.init(document.getElementById('gdp-map'));
+      const mapContainer = document.getElementById("gdp-map");
+      if (!mapContainer) {
+        console.error("GDPMap: 容器未正确加载！");
+        return;
+      }
+      if (this.chart) {
+        this.chart.dispose(); // 防止重复初始化
+      }
+      this.chart = echarts.init(mapContainer);
+      this.isChartInitialized = true; // 设置标志位为 true
 
       const option = {
-        tooltip: { trigger: 'item', formatter: '{b}: {c} (亿元)' },
-        visualMap: {
-          min: 0,
-          max: 100000,
-          left: 'left',
-          top: 'bottom',
-          text: ['高', '低'],
-          inRange: { color: ['#e0f7fa', '#006064'] }, // 使用柔和的颜色从浅蓝到深蓝
-          show: true,
-        },
+        tooltip: { trigger: "item", formatter: "{b}: {c} (亿元)" },
         series: [
           {
-            name: 'GDP',
-            type: 'map',
-            map: 'china',
-            roam: true, // 允许地图缩放和平移
-            label: {
-              show: true,
-              color: '#333', // 标签文字颜色
-            },
+            name: "GDP",
+            type: "map",
+            map: "china",
+            roam: true,
+            label: { show: false },
             emphasis: {
               itemStyle: {
-                areaColor: '#ffb74d', // 高亮颜色
+                areaColor: "#ffb74d",
               },
             },
-            data: [
-              { name: '北京', value: 36102 },
-              { name: '上海', value: 38700 },
-              { name: '广东', value: 110760 },
-              // 更多省份的数据
-            ],
+            data: [],
           },
         ],
       };
 
-      chart.setOption(option);
+      this.chart.setOption(option);
 
-      // 添加点击事件
-      chart.on('click', (params) => {
-        this.$emit('provinceClick', {
-          name: params.name,
-          value: params.value,
-          primary: 20,   // 假设第一产业占比
-          secondary: 50, // 假设第二产业占比
-          tertiary: 30,  // 假设第三产业占比
-        });
+      this.chart.on("click", (params) => {
+        const provinceName = params.name;
+        const fileName = this.provinceFileMap[provinceName];
+
+        if (!fileName) {
+          console.error(`无法找到 ${provinceName} 的文件映射`);
+          return;
+        }
+
+        const provinceData = this.chart
+          .getOption()
+          .series[0].data.find((item) => item.name === provinceName);
+        const provinceColor = provinceData
+          ? provinceData.itemStyle?.areaColor || "#CCCCCC"
+          : "#CCCCCC";
+
+        const provinceFile = `/src/assets/provinces/${fileName}.json`;
+        fetch(provinceFile)
+          .then((response) => {
+            if (!response.ok) throw new Error(`文件 ${fileName} 不存在`);
+            return response.json();
+          })
+          .then((provinceGeoJSON) => {
+            this.$emit("provinceClick", provinceName);
+            this.$emit("provinceMapData", provinceGeoJSON);
+            this.$emit("provinceColor", {
+              name: provinceName,
+              color: provinceColor,
+            });
+          })
+          .catch((error) => {
+            console.error(`加载 ${provinceName} 地图数据时出错:`, error);
+          });
       });
 
-      // 窗口大小变化时自适应
-      window.addEventListener('resize', () => {
-        chart.resize();
+      window.addEventListener("resize", () => {
+        this.chart.resize();
       });
+
+      // 初始化完成后更新地图
+      this.updateMap(this.data);
+    },
+    // 更新地图数据
+    updateMap(data) {
+      if (!this.isChartInitialized) {
+        console.error("GDPMap: 图表未初始化！");
+        return;
+      }
+
+      console.log("Updating map with data:", data);
+      console.log("Clusters Data for year:", this.year, clustersData[this.year]);
+
+      this.calculateClusterRanges(data);
+
+      this.chart.setOption({
+        series: [
+          {
+            data: data.map((item) => ({
+              ...item,
+              itemStyle: {
+                areaColor: this.getColorForProvince(item),
+              },
+            })),
+          },
+        ],
+      });
+
+      console.log("Map updated for year:", this.year);
+    },
+    // 计算每个聚类的范围
+    calculateClusterRanges(data) {
+      this.clusterRanges = {
+        0: { min: Infinity, max: -Infinity },
+        1: { min: Infinity, max: -Infinity },
+        2: { min: Infinity, max: -Infinity },
+        3: { min: Infinity, max: -Infinity },
+      };
+
+      data.forEach((item) => {
+        const province = item.name;
+        const gdpValue = item.value;
+        const cluster = clustersData[this.year]?.[province]?.GDP_Cluster;
+
+        if (cluster === undefined) return;
+
+        this.clusterRanges[cluster].min = Math.min(
+          this.clusterRanges[cluster].min,
+          gdpValue
+        );
+        this.clusterRanges[cluster].max = Math.max(
+          this.clusterRanges[cluster].max,
+          gdpValue
+        );
+      });
+
+      for (const cluster in this.clusterRanges) {
+        if (this.clusterRanges[cluster].min === Infinity) {
+          this.clusterRanges[cluster].min = 0;
+        }
+        if (this.clusterRanges[cluster].max === -Infinity) {
+          this.clusterRanges[cluster].max = 0;
+        }
+      }
+    },
+    // 获取省份颜色
+    getColorForProvince(item) {
+      const province = item.name;
+
+      if (province === "中国") {
+        return "#CCCCCC";
+      }
+
+      const cluster = clustersData[this.year]?.[province]?.GDP_Cluster;
+
+      if (cluster === undefined) {
+        console.warn(`未找到 ${this.year} 年 ${province} 的 GDP_Cluster 数据`);
+        return "#CCCCCC";
+      }
+
+      const colorRange = this.colorPalette[cluster];
+      const gdpValue = item.value;
+
+      return this.getGradientColorInCluster(gdpValue, colorRange, cluster);
+    },
+    // 计算颜色梯度
+    getGradientColorInCluster(value, colorRange, cluster) {
+      const clusterMin = this.clusterRanges[cluster].min;
+      const clusterMax = this.clusterRanges[cluster].max;
+      const percent =
+        clusterMax === clusterMin
+          ? 0
+          : (value - clusterMin) / (clusterMax - clusterMin);
+      return echarts.color.lerp(percent, colorRange);
     },
   },
-  beforeDestroy() {
-    // 移除 resize 事件监听
-    window.removeEventListener('resize', this.chart?.resize);
+  beforeUnmount() {
+    if (this.chart) {
+      this.chart.dispose();
+    }
+    window.removeEventListener("resize", this.chart?.resize);
   },
 };
 </script>
@@ -85,25 +284,28 @@ export default {
 .map-container {
   width: 100%;
   height: 100%;
-  padding: 20px; /* 给容器增加内边距，让内容不贴近边缘 */
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-image: url('src/assets/back.png'); /* 替换为你的图片路径 */
+  background-size: cover; /* 图片铺满容器 */
+  background-position: center; /* 图片居中显示 */
+  background-repeat: no-repeat; /* 不重复图片 */
+  border-radius: 8px; /* 可选，添加圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 可选，添加阴影 */
 }
 
 .map-title {
-  font-size: 24px; /* 标题字体大小 */
+  cursor: pointer;
+  font-size: 30px;
   font-weight: bold;
-  color: #333; /* 标题颜色 */
-  margin-bottom: 20px; /* 标题与地图之间的距离 */
-  text-align: center;
+  color: #fff;
+  writing-mode: vertical-rl; /* 将文字设置为竖排，从右到左 */
+  transform: rotate(360deg); /* 旋转文字使其从上到下 */
+  text-align: center; /* 竖排文字居中 */
+  margin-left: 50px; /* 离左边的距离 */
 }
+
 
 .map {
   width: 100%;
-  height: calc(100% - 60px); /* 留出一些空间用于标题 */
-  max-width: 1200px; /* 限制地图的最大宽度，避免过大 */
-  margin: 0 auto;
+  height: calc(100% - 40px);
 }
 </style>

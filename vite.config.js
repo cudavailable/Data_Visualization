@@ -9,14 +9,14 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   publicPath: '/GDP-Data-Visualization/',
-  server: {
-    port: 5000, // 固定端口
-    open: true, // 自动打开浏览器
-    cors: true, // 支持跨域
-    fs: {
-      allow: ['src', 'assets', 'public'], // 增加访问权限
-    },
-  },
+  // server: {
+    // port: 5000, // 固定端口
+    // open: true, // 自动打开浏览器
+    // cors: true, // 支持跨域
+    // fs: {
+      // allow: ['src', 'assets', 'public'], // 增加访问权限
+    // },
+  // },
   build: {
     chunkSizeWarningLimit:1500,
     rollupOptions: {
