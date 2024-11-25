@@ -2,34 +2,42 @@
   <div class="scroll-container">
     <!-- 顶部跳转导航 -->
     <HeaderNav />
-    
+    <!-- 各个内容区域 -->
     <section id="economyOverview" class="section">
-       <EconomyOverview />
+	  <div class="section-padding"></div>
+      <div class="section-content">
+        <EconomyOverview />
+      </div>
     </section>
-    
-    <!-- 农业部分 -->
     <section id="agriculture" class="section">
-      <AgriculturePage />
+      <div class="section-padding"></div>
+      <div class="section-content">
+        <AgriculturePage />
+      </div>
     </section>
-    
-    <!-- 工业部分 -->
     <section id="industry" class="section">
-      <IndustryPage />
+	  <div class="section-padding"></div>      
+	  <div class="section-content">
+        <IndustryPage />
+      </div>
     </section>
-    
-    <!-- 服务业部分 -->
     <section id="services" class="section">
-      <ServicePage />
+	  <div class="section-padding"></div>		
+      <div class="section-content">
+        <ServicePage />
+      </div>
     </section>
-    
-    <!-- 数字经济部分 -->
     <section id="digitalEconomy" class="section">
-      <DigitalEconomyPage />
+	  <div class="section-padding"></div>		
+      <div class="section-content">
+        <DigitalEconomyPage />
+      </div>
     </section>
-    
-    <!-- 全球角色部分 -->
     <section id="globalRole" class="section">
-      <GlobalRolePage />
+	  <div class="section-padding"></div>		
+      <div class="section-content">
+        <GlobalRolePage />
+      </div>
     </section>
   </div>
 </template>
@@ -59,19 +67,44 @@ export default {
 
 <style scoped>
 .scroll-container {
-  height: 100vh;
+  /* @OYN */
+  margin: 0;
+  padding: 0;
+  padding-top: 60px; /* 导航栏高度，避免内容被遮挡 */
+  width: 100%;
+  overflow-x: hidden; /* 防止横向滚动条 */
+
+  /* height: 100vh; */
   overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  /* scroll-snap-type: y mandatory; */
 }
 
 .section {
-  height: 100vh;
+  /* @OYN */
+  flex-direction: column;
+  position: relative; /* 使内部绝对定位的内容有效 */
+
+  /* height: 100vh; */
   scroll-snap-align: start;
-  padding: 20px;
+  min-height: 100vh; /* 确保每部分至少占据一屏 */
+  padding: 20px; /* 给内容一些内边距 */
   background-color: #f0f0f0;
 }
+
+/* @OYN */
+.section-padding {
+  height: 10%;
+  width: 100%;
+  background-color: white; /* 填充背景颜色，与导航栏一致 */
+}
+
+.section-content {
+  height: 90%;
+  width: 100%;
+  background-color: white; /* 填充背景颜色，与导航栏一致 */
+}
+
 html {
   scroll-behavior: smooth;
 }
-
 </style>
