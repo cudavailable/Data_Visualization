@@ -31,25 +31,34 @@ export default {
   },
   mounted() {
     this.initChart();
+    this.$nextTick(() => {
+      if (this.chart) {
+        this.updateChart(this.province); // 确保图表初始化后再更新
+      }
+    });
   },
   methods: {
     initChart() {
       const chartContainer = this.$refs.chartContainer;
       if (chartContainer) {
         this.chart = echarts.init(chartContainer);
-        this.updateChart(this.province); // 初始化图表
       } else {
         console.error('Chart container not found.');
       }
     },
     updateChart(province) {
-      if (!this.chart || !productData[province]) {
-        console.error('Chart instance not found or province data missing.');
+      if (!this.chart) {
+        console.warn('Chart instance not ready, retrying...');
+        this.$nextTick(() => this.updateChart(province));
         return;
       }
 
-      // 从 `productData` 中获取该省份的数据
       const provinceData = productData[province];
+      if (!provinceData || Object.keys(provinceData).length === 0) {
+        console.error(`No data found for province: ${province}`);
+        return;
+      }
+
       const years = Object.keys(provinceData).sort((a, b) => a - b); // 按年份从小到大排序
       const cornData = years.map((year) => provinceData[year]['玉米产量(万吨)']);
       const wheatData = years.map((year) => provinceData[year]['小麦产量(万吨)']);
