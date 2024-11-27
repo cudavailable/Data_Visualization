@@ -67,31 +67,20 @@ export default {
 
 <style scoped>
 .scroll-container {
-  /* @OYN */
   margin: 0;
   padding: 0;
-  padding-top: 60px; /* 导航栏高度，避免内容被遮挡 */
   width: 100%;
   overflow-x: hidden; /* 防止横向滚动条 */
-
-  /* height: 100vh; */
-  overflow-y: auto;
-  /* scroll-snap-type: y mandatory; */
 }
 
 .section {
-  /* @OYN */
+  height: 100vh; /* 每个 section 占满整个视口高度 */
   flex-direction: column;
-  position: relative; /* 使内部绝对定位的内容有效 */
-
-  /* height: 100vh; */
   scroll-snap-align: start;
-  min-height: 100vh; /* 确保每部分至少占据一屏 */
-  padding: 20px; /* 给内容一些内边距 */
   background-color: #f0f0f0;
+  position: relative; /* 使内部绝对定位的内容有效 */
 }
 
-/* @OYN */
 .section-padding {
   height: 10%;
   width: 100%;
@@ -105,6 +94,6 @@ export default {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* 平滑滚动效果 */
 }
 </style>
