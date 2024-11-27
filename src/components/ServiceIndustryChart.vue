@@ -2,7 +2,7 @@
   <div class = "right_part">
     <h2 class="map-title">服务业</h2>
     <!-- 气泡图容器 -->
-    <div ref="chartDom" style="width: 570px; height: 400px;" class = "myImage"></div>
+    <div ref="chartDom" style="width: 550px; height: 420px;" class = "myImage"></div>
     <!-- 按钮组 -->
     <div class = "button_group">
       <button 
