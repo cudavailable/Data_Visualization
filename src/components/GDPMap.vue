@@ -290,22 +290,22 @@ export default {
   background-repeat: no-repeat; /* 不重复图片 */
   border-radius: 8px; /* 可选，添加圆角 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 可选，添加阴影 */
+  display: flex;
+  flex-direction: column; /* 改为纵向布局 */
 }
 
 .map-title {
   cursor: pointer;
-  font-size: 30px;
+  font-size: 32px; /* 调整字体大小 */
   font-weight: bold;
   color: #fff;
-  writing-mode: vertical-rl; /* 将文字设置为竖排，从右到左 */
-  transform: rotate(360deg); /* 旋转文字使其从上到下 */
   text-align: center; /* 竖排文字居中 */
-  margin-left: 50px; /* 离左边的距离 */
+  margin: 10px auto; /* 上下居中对齐，左右自动居中 */
 }
 
-
 .map {
+  flex: 1;
   width: 100%;
-  height: calc(100% - 40px);
+  height: calc(100% - 60px); /* 剩余高度分配给地图 */
 }
 </style>
