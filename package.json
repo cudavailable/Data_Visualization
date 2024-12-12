@@ -1,11 +1,11 @@
 {
   "name": "vue3_cli_default",
   "version": "0.0.0",
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "echarts": "^5.5.1",
