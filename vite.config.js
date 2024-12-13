@@ -11,6 +11,7 @@ export default defineConfig({
   plugins: [vue()],
   // publicPath: '/GDP-Data-Visualization/',
   base: '/', // 静态资源路径
+  outDir: 'dist',
   server: {
     port: 5000, // 固定端口
     open: true, // 自动打开浏览器
