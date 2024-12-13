@@ -12,9 +12,9 @@ export default {
     var myChart = echarts.init(chartDom);
 
     var option = {
-      title: {
-        text: '同比增长',
-      },
+      // title: {
+      //   text: '同比增长',
+      // },
       tooltip: {
         trigger: 'axis',
       },
