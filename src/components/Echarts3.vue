@@ -4,133 +4,70 @@
   
 <script>
   import * as echarts from "echarts";
-  import ecStat from "echarts-stat";
   
   export default {
     name: "Echarts3",
-    props: {
-      chartTitle: {
-        type: String,
-        default: "2021年3月各省数字经济指数和融合指数聚类（数据来源：财新智库）",
-      },
-    },
     mounted() {
-      echarts.registerTransform(ecStat.transform.clustering);
-      this.initChart();
-    },
-    methods: {
-      initChart() {
-        echarts.registerTransform(ecStat.transform.clustering);
+    var chartDom = this.$refs.chart;  // 使用 Vue 的 ref 获取 DOM
+    var myChart = echarts.init(chartDom);
 
-        const data = [
-          [1483, 52.0, "广东"],
-          [1273, 50.5, "江苏"],
-          [1107, 40.3, "重庆"],
-          [1092, 45.5, "浙江"],
-          [1072, 45.4, "四川"],
-          [996, 51.3, "山东"],
-          [996, 59.4, "陕西"],
-          [989, 41.2, "北京"],
-          [920, 39.7, "湖北"],
-          [884, 46.4, "福建"],
-          [855, 43.2, "安徽"],
-          [817, 41.8, "上海"],
-          [785, 57.9, "辽宁"],
-          [738, 40.4, "河南"],
-          [733, 39.4, "湖南"],
-          [700, 40.2, "江西"],
-          [627, 37.7, "天津"],
-          [598, 38.4, "河北"],
-          [543, 43.8, "吉林"],
-          [529, 47.9, "海南"],
-          [500, 40.8, "广西"],
-          [489, 34.9, "云南"],
-          [467, 31.9, "黑龙江"],
-          [442, 42.5, "甘肃"],
-          [437, 34.0, "山西"],
-          [355, 34.7, "内蒙古"],
-          [348, 35.8, "新疆"],
-          [347, 32.4, "贵州"],
-          [230, 29.4, "宁夏"],
-          [191, 28.7, "青海"],
-          [122, 22.0, "西藏"],
-        ];
-        const CLUSTER_COUNT = 3;
-        const DIMENSION_CLUSTER_INDEX = 3;
-        const COLOR_ALL = ["#37A2DA", "#e06343", "#37a354", "#b55dba", "#b5bd48", "#8378EA", "#96BFFF"];
-        const pieces = Array.from({ length: CLUSTER_COUNT }, (_, i) => ({
-          value: i,
-          label: "聚类" + (i+1),
-          color: COLOR_ALL[i],
-        }));
-  
-        const chart = echarts.init(this.$refs.chart);
-        
-        const option = {
-          title: {
-            text: this.chartTitle, // 使用父级传递的标题
-            left: "left",
-            top: "top",
-            textStyle: {
-              fontSize: 19,
-              fontWeight: "bold",
-            },
-          },
-          dataset: [
-            { source: data },
-            {
-              transform: {
-                type: "ecStat:clustering",
-                config: {
-                  clusterCount: CLUSTER_COUNT,
-                  outputType: "single",
-                  outputClusterIndexDimension: DIMENSION_CLUSTER_INDEX,
-                  dimensions: [0, 1], // 仅使用第 0 和第 1 维度进行聚类
-                },
-              },
-            },
-          ],
-          tooltip: {
-            position: "bottom",
-            formatter: function (params) {
-              return `省/直辖市: ${params.data[2]}<br>数字经济指数: ${params.data[0]}<br>融合指数: ${params.data[1]}`;
+    var option = {
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+            // ['product', '2019', '2020', '2021', '2022', '2023'],
+            // ['第一产业渗透率', 8.2, 8.9, 9.7, 10.5, 10.78],
+            // ['第二产业渗透率', 19.5, 21.0, 22.4, 24.0, 25.03],
+            // ['第三产业渗透率', 37.8, 40.7, 43.3, 44.7, 45.63],
+            // ['总GDP渗透率', 36.2, 38.6, 39.8, 41.5, 42.8]
+                ['product', '第一产业渗透率', '第二产业渗透率', '第三产业渗透率', '总GDP渗透率'],
+                ['2019', 8.2, 19.5, 37.8, 36.2],
+                ['2020', 8.9, 21.0, 40.7, 38.6],
+                ['2021', 9.7, 22.4, 43.3, 39.8],
+                ['2022', 10.5, 24.0, 44.7, 41.5],
+                ['2023', 10.78, 25.03, 45.63, 42.8]
+            ]
+        },
+
+        xAxis: { type: "category" }, // X 轴
+        yAxis: { 
+            axisLabel: {
+            formatter: '{value}%' // Y 轴百分比格式
             }
-          },
-          visualMap: {
-            type: "piecewise",
-            top: "middle",
-            min: 0,
-            max: CLUSTER_COUNT - 1,
-            left: 10,
-            splitNumber: CLUSTER_COUNT,
-            dimension: DIMENSION_CLUSTER_INDEX,
-            pieces: pieces,
-          },
-          grid: {
-            left: 120,
-          },
-          xAxis: {
-            name: "数字经济",
-          },
-          yAxis: {
-            name: "融合指数",
-          },
-          series: {
-            type: "scatter",
-            encode: { tooltip: [2, 0, 1] },
-            symbolSize: 15,
-            itemStyle: { borderColor: "#555" },
-            datasetIndex: 1,
-          },
-        };
+        }, // Y 轴
+        series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+        // xAxis: [
+        //     { type: 'category', gridIndex: 0 },
+        //     { type: 'category', gridIndex: 1 }
+        // ],
+        // yAxis: [{ gridIndex: 0 }, { gridIndex: 1 }],
+        // xAxis: { type: 'category' },
+        // yAxis: {},
+        // series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+        // grid: [{ bottom: '55%' }, { top: '55%' }],
+        // series: [
+        //     // These series are in the first grid.
+        //     { type: 'bar', seriesLayoutBy: 'row' },
+        //     { type: 'bar', seriesLayoutBy: 'row' },
+        //     { type: 'bar', seriesLayoutBy: 'row' },
+        //     { type: 'bar', seriesLayoutBy: 'row' },
+        //     // These series are in the second grid.
+        //     { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        //     { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        //     { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        //     { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        //     { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 }
+        // ]
+    };
 
-        chart.setOption(option);
-      },
-    },
-  };
+    myChart.setOption(option);
+    }
+}
+
 </script>
-  
+
 <style scoped>
-  /* 图表的样式 */
+/* 自定义样式 */
 </style>
-  
+    
