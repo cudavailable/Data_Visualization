@@ -1,71 +1,111 @@
 <template>
-  <div class="section">
-   <!-- <h2>工业巨轮——第二产业的崛起与壮大</h2> -->
-	<div class="content">
-	<div class="comp">
-	<IndustryAdded />
-	</div>
-	<div class="comp">
-	<IndustryProduct />
-	</div>
-	<div class="comp">
-	<IndustryCapital />
-	</div>
-	<div class="comp">
-	<IndustryEnergy />
-	</div>
-    <IndustryChart />
-  </div>
+  <div class="dashboard">
+    <div class="left-column">
+		<div class="leftCont">
+			<IndustryProvince />
+	    </div>
+    </div>
+    <div class="right-column">
+      <div class="switch-buttons">
+        <button @click="prevComponent">←</button>
+        <div class="component-container">
+        <IndustryAdded v-if="currentComponent === 'IndustryAdded'" />
+        <IndustryProduct v-else-if="currentComponent === 'IndustryProduct'" />
+        <IndustryCapital v-else-if="currentComponent === 'IndustryCapital'" />
+        <IndustryEnergy v-else-if="currentComponent === 'IndustryEnergy'" />
+        </div>
+        <button @click="nextComponent">→</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import IndustryProvince from '../components/IndustryProvince.vue';
 import IndustryAdded from '../components/IndustryAdded.vue';
 import IndustryProduct from '../components/IndustryProduct.vue';
 import IndustryCapital from '../components/IndustryCapital.vue';
 import IndustryEnergy from '../components/IndustryEnergy.vue';
-import IndustryChart from '../components/IndustryChart.vue';
 
 export default {
   name: 'IndustryPage',
   components: {
+	IndustryProvince,
 	IndustryAdded,
 	IndustryProduct,
 	IndustryCapital,
-	IndustryEnergy,
-    IndustryChart
+	IndustryEnergy
+  },
+  data() {
+    return {
+      currentComponent: 'IndustryAdded'
+    };
+  },
+  methods: {
+    prevComponent() {
+    const components = ['IndustryAdded','IndustryProduct', 'IndustryCapital', 'IndustryEnergy'];
+    const currentIndex = components.indexOf(this.currentComponent);
+    this.currentComponent = components[(currentIndex - 1 + components.length) % components.length];
+  },
+  nextComponent() {
+    const components = ['IndustryAdded','IndustryProduct', 'IndustryCapital', 'IndustryEnergy'];
+    const currentIndex = components.indexOf(this.currentComponent);
+    this.currentComponent = components[(currentIndex + 1) % components.length];
+  }
   }
 };
 </script>
 
 <style scoped>
-.section {
+.dashboard {
+  display: flex;
   height: 100vh;
-  scroll-snap-align: start;
-  background-color: #d0d0d0;
-  display: flex; /* 使用 flex 布局 */
-  justify-content: center;
+}
+
+.left-column {
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.leftCont {
+	width: 100%;
+	height: 80%;
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+.right-column {
+  width: 50%;
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.switch-buttons {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
-/* 网格容器样式 */
-.content {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 两列布局 */
-  grid-template-rows: 1fr 1fr; /* 两行布局 */
-  gap: 10px; /* 网格间距 */
-  width: 100%; /* 宽度占满 */
-  height: 100%; /* 高度占满父容器 */
+.component-container {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex; /* 添加 Flexbox 布局 */
+  flex-direction: column; /* 垂直排列子元素 */
 }
 
-.comp{
-	background-color: #f5f5f5; /* 背景色 */
-	border: 1px solid #ccc; /* 边框 */
-	/* padding: 10px; */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	overflow: hidden;
+button {
+  margin: 0 10px;
+}
+
+#chartDom {
+  width: 100%;
+  height: 100%;
 }
 
 </style>

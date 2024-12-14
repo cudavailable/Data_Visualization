@@ -1,4 +1,8 @@
 <template>
+	<div class="explain">
+		<h3>工业增加值</h3>
+		<h4>	从2013年到2023年，中国的工业增加值总体呈现持续增长的趋势。在这段时间内中国的工业经济保持了稳定的增长势头，反映了国家在工业领域的持续投入和发展。</h4>
+	</div>
 	<div ref="chartDom" id="chartDom" style="width: 100%;height: 100%;"></div>
 </template>
 
@@ -95,4 +99,14 @@ export default {
 </script>
 
 <style>
+.explain{
+	flex: 1;
+	padding: 10px;
+	padding-top: 30px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	width:100%;
+	height:40%;
+}
+
 </style>

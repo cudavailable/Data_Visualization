@@ -1,5 +1,9 @@
 <template>
-  <div ref="chartDom" id="chartDom" style="width: 100%;height: 100%;"></div>
+	<div class="explain">
+		<h3>工业产品产量</h3>
+		<h4>	新中国成立初期，我国工业面临厂房残破、设备落后的基础条件，原材料供给严重不足，日用生活消费品仅有纱、布、火柴、肥皂、面粉等为数不多的品种产出；75年来工业发展开疆拓土，如今我国能够生产的产品覆盖原材料、消费品、中高端装备等各个领域，在500种主要工业产品中，有四成以上产品产量位居全球第一。</h4>
+	</div>
+    <div ref="chartDom" id="chartDom" style="width: 100%;height: 100%;"></div>
 </template>
 
 <script>
