@@ -1,17 +1,11 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-// 按需加载
-// import styleImport from 'vite-plugin-style-import'
-// import { resolve } from 'path'
-
-// https://vitejs.dev/config/
 
 
 export default defineConfig({
   plugins: [vue()],
   // publicPath: '/GDP-Data-Visualization/',
-  base: '/', // 静态资源路径
-  outDir: 'dist',
+  base: '/GDP-Data-Visualization/', // 静态资源路径
   server: {
     port: 5000, // 固定端口
     open: true, // 自动打开浏览器
@@ -21,6 +15,7 @@ export default defineConfig({
     // },
   },
   build: {
+    outDir: 'docs',
     chunkSizeWarningLimit:1500,
     rollupOptions: {
         output:{
@@ -34,10 +29,3 @@ export default defineConfig({
     }
   }
 })
-
-
-// https://vitejs.dev/config/
-// export default defineConfig({
-  // 
-  // 
-// })
