@@ -11,27 +11,27 @@
         <div class="container">
           <RadarChart />
           <div class="txt-container">
-            <button class="arrow up" @mouseenter="showPopup('近十年来,中国农业生产总值以年均约4.1%的增速稳定增长,从2013年的48342万亿元提升至2023年的87037万亿元,增幅接近180%。这种增长主要得益于科技赋能、农业现代化水平提升以及市场化改革带来的效率提升和农产品价值链优化。', '/nongye1.jpg')"
+            <button class="arrow up" @mouseenter="showPopup('近十年来,中国农业生产总值以年均约4.1%的增速稳定增长,从2013年的48342万亿元提升至2023年的87037万亿元,增幅接近180%。这种增长主要得益于科技赋能、农业现代化水平提升以及市场化改革带来的效率提升和农产品价值链优化。', 'nongye1')"
             @mouseleave="closePopup">▲ 上升180%</button>
-            <button class="arrow down" @mouseenter="showPopup('近十年,中国农村常住人口从2013年的6.3亿人下降至2023年的4.77亿人,减少约25%。这种趋势反映了城镇化进程的加速，大量农村人口转移至城市寻求更高收入和生活条件的改善。', '/nongye2.jpg')"
+            <button class="arrow down" @mouseenter="showPopup('近十年,中国农村常住人口从2013年的6.3亿人下降至2023年的4.77亿人,减少约25%。这种趋势反映了城镇化进程的加速，大量农村人口转移至城市寻求更高收入和生活条件的改善。', 'nongye2')"
             @mouseleave="closePopup">▼ 下降25%</button>
           </div>
         </div>
         <div class="container">
           <RadarChart2 />
           <div class="txt-container">
-            <button class="arrow up" @mouseenter="showPopup('中国农产品受灾面积在过去十年间总体呈现下降趋势,从2013年的4721公顷减少到2023年的1207公顷,下降近75%。这得益于防灾减灾技术的进步和农业基础设施的完善，有效降低了自然灾害对农业的影响。', '/nongye3.jpg')"
+            <button class="arrow up" @mouseenter="showPopup('中国农产品受灾面积在过去十年间总体呈现下降趋势,从2013年的4721公顷减少到2023年的1207公顷,下降近75%。这得益于防灾减灾技术的进步和农业基础设施的完善，有效降低了自然灾害对农业的影响。', 'nongye3')"
             @mouseleave="closePopup">▼ 下降75%</button>
-            <button class="arrow down" @mouseenter="showPopup('从2013年到2023年,中国粮食产量经历了波动变化。2013年的粮食产量为49804.23万吨,随后逐年增加,尤其在2019年达到65789.22万吨的高峰。整体来看,粮食产量在这十年间呈现上升趋势。', '/nongye4.jpg')"
+            <button class="arrow down" @mouseenter="showPopup('从2013年到2023年,中国粮食产量经历了波动变化。2013年的粮食产量为49804.23万吨,随后逐年增加,尤其在2019年达到65789.22万吨的高峰。整体来看,粮食产量在这十年间呈现上升趋势。', 'nongye4')"
             @mouseleave="closePopup">▲ 上升137%</button>
           </div>
         </div>
         <div class="container">
           <RadarChart3 />
           <div class="txt-container">
-            <button class="arrow up" @mouseenter="showPopup('农业机械化逐渐普及，覆盖范围不断扩大。现代化设备的广泛应用不仅提高了耕作效率，还降低了生产成本，推动了农业生产方式的转型。这一进程改善了农业的劳动强度和生产效益，促进了农业现代化进程。', '/nongye5.jpg')"
+            <button class="arrow up" @mouseenter="showPopup('农业机械化逐渐普及，覆盖范围不断扩大。现代化设备的广泛应用不仅提高了耕作效率，还降低了生产成本，推动了农业生产方式的转型。这一进程改善了农业的劳动强度和生产效益，促进了农业现代化进程。', 'nongye5')"
             @mouseleave="closePopup">▲ 上升203%</button>
-            <button class="arrow down" @mouseenter="showPopup('农产品网络销售逐渐普及，尤其随着电商平台的发展，越来越多的农民和农业企业通过线上渠道直接面向消费者。通过网络销售，农产品能够更快捷地进入市场，减少中间环节，提高了农民收入，也拓宽了消费者的选择范围。', '/nongye6.jpg')"
+            <button class="arrow down" @mouseenter="showPopup('农产品网络销售逐渐普及，尤其随着电商平台的发展，越来越多的农民和农业企业通过线上渠道直接面向消费者。通过网络销售，农产品能够更快捷地进入市场，减少中间环节，提高了农民收入，也拓宽了消费者的选择范围。', 'nongye6')"
             @mouseleave="closePopup">▲ 上升2950%</button>
           </div>
         </div>
@@ -73,6 +73,14 @@ import RadarChart2 from '../components/RadarChart2.vue';
 import RadarChart3 from '../components/RadarChart3.vue';
 import FoodProductionChart from '../components/FoodProductionChart.vue';
 
+// 直接引入图片
+import nongye1 from '@/assets/images/nongye1.jpg';
+import nongye2 from '@/assets/images/nongye2.jpg';
+import nongye3 from '@/assets/images/nongye3.jpg';
+import nongye4 from '@/assets/images/nongye4.jpg';
+import nongye5 from '@/assets/images/nongye5.jpg';
+import nongye6 from '@/assets/images/nongye6.jpg';
+
 export default {
   name: 'GlobalRolePage',
   components: {
@@ -87,13 +95,29 @@ export default {
       popupMessage: '',
       popupImagePath: '',
       otherPopupVisible: false,
+      // 把图片路径放入 data 中
+      images: {
+        nongye1,
+        nongye2,
+        nongye3,
+        nongye4,
+        nongye5,
+        nongye6,
+      },
     };
   },
   methods: {
-    showPopup(message, imagePath) {
+    // showPopup(message, imagePath) {
+    //   if (!this.popupVisible) {
+    //     this.popupMessage = message;
+    //     this.popupImagePath = imagePath;
+    //     this.popupVisible = true;
+    //   }
+    // },
+    showPopup(message, imageKey) {
       if (!this.popupVisible) {
         this.popupMessage = message;
-        this.popupImagePath = imagePath;
+        this.popupImagePath = this.images[imageKey];
         this.popupVisible = true;
       }
     },

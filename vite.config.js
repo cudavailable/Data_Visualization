@@ -4,6 +4,11 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
   // publicPath: '/GDP-Data-Visualization/',
   base: '/GDP-Data-Visualization/', // 静态资源路径
   server: {
