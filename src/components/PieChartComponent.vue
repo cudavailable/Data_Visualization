@@ -1,146 +1,238 @@
-<!-- PieChartComponent.vue -->
 <template>
-  <div id="pie-chart" style="width: 100%; height: 100%;"></div>
+  <div class="pie-chart-component">
+    <div class="chart-header">
+      <button class="prev-btn" @click="switchView(currentViewIndex - 1)">←</button>
+      <h2>{{ views[currentViewIndex].name }}</h2>
+      <button class="next-btn" @click="switchView(currentViewIndex + 1)">→</button>
+    </div>
+
+    <div v-if="loading" class="loading-state">
+      <p>正在加载数据...</p>
+    </div>
+    <div v-else-if="error" class="error-state">
+      <p>{{ error }}</p>
+    </div>
+    <div v-else class="chart-wrapper">
+      <transition name="fade" mode="out-in">
+        <component
+          :is="views[currentViewIndex].component"
+          :data="views[currentViewIndex].data"
+          :key="currentViewIndex"
+          ref="chart"
+        />
+      </transition>
+    </div>
+  </div>
 </template>
 
 <script>
-import * as echarts from "echarts";
+import { markRaw } from "vue";
+import GdpLogChart from "./GdpLogChart.vue";
+import PopulationChart from "./PopulationChart.vue";
+import IndustryChart from "./IndustryChart.vue";
 
 export default {
   name: "PieChartComponent",
-  props: {
-    data: {
-      type: Object, // 数据格式为年份为键的对象
-      required: true,
-    },
-    year: {
-      type: Number, // 当前年份
-      required: true,
-    },
-    province: {
-      type: String, // 当前选中的省份
-      required: true,
-    },
+  components: {
+    GdpLogChart,
+    PopulationChart,
+    IndustryChart,
   },
   data() {
     return {
-      chart: null,
-      isChartInitialized: false, // 标志位
+      currentViewIndex: 0,
+      loading: true,
+      error: null,
+      views: [
+        { name: "GDP对数变换趋势", component: markRaw(GdpLogChart), data: [] },
+        { name: "人口与GDP关系", component: markRaw(PopulationChart), data: [] },
+        { name: "三大产业结构变化", component: markRaw(IndustryChart), data: [] },
+      ],
     };
   },
-  mounted() {
-    console.log("Mounted: 当前接收的数据", this.data);
-    console.log("Mounted: 当前年份", this.year);
-    console.log("Mounted: 当前省份", this.province);
-    this.initChart();
-  },
-  methods: {
-    initChart() {
-      if (!this.chart) {
-        this.chart = echarts.init(document.getElementById("pie-chart"));
-        this.isChartInitialized = true;
-        this.updateChart(); // 初始化完成后更新图表
-      }
-    },
-    updateChart() {
-      if (!this.isChartInitialized) {
-        console.error("PieChartComponent: 图表实例未初始化");
-        return;
-      }
-
-      if (!this.data || !this.data[this.year]) {
-        console.warn(`PieChartComponent: 年份 ${this.year} 的数据不可用`);
-        return;
-      }
-
-      console.log("UpdateChart: 当前年份", this.year);
-      console.log("UpdateChart: 当前省份", this.province);
-      console.log("UpdateChart: 接收的数据", this.data);
-
-      // 内圈：当年当前省份数据
-      const currentYearData = this.data[this.year]?.pie?.find(
-        (item) => item.name === this.province
-      );
-      const currentData = currentYearData?.value || [
-        { value: 0, name: "第一产业" },
-        { value: 0, name: "第二产业" },
-        { value: 0, name: "第三产业" },
-      ];
-
-      if (!currentYearData) {
-        console.warn(`未找到年份 ${this.year} 和省份 ${this.province} 的数据`);
-      }
-
-      // 配置图表
-      const option = {
-        title: {
-          text: `产业结构 (${this.year}) - ${this.province}`,
-          left: "left",
-        },
-        tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b}: {c} ({d}%)",
-        },
-        series: [
-          {
-            name: "当前年份",
-            type: "pie",
-            radius: ["30%", "50%"],
-            center: ["50%", "60%"],
-            data: currentData,
-            label: {
-              position: "inner",
-              formatter: "{b}\n{d}%",
-            },
-          },
-        ],
-      };
-
-      this.chart.setOption(option);
-    },
-    getColorByIndustry(name) {
-      const colors = {
-        "第一产业": "#bec936",
-        "第二产业": "#c0c4c3",
-        "第三产业": "#fcc307",
-      };
-      return colors[name] || "#cccccc";
-    },
-  },
-  watch: {
-    data: {
-      handler(newVal) {
-        if (this.isChartInitialized) {
-          console.log("Watch: data 变化", newVal);
-          this.updateChart();
-        }
-      },
-      deep: true,
-    },
-    year(newVal) {
-      if (this.isChartInitialized) {
-        console.log("Watch: year 变化", newVal);
-        this.updateChart();
-      }
-    },
-    province(newVal) {
-      if (this.isChartInitialized) {
-        console.log("Watch: province 变化", newVal);
-        this.updateChart();
-      }
-    },
+  async mounted() {
+    console.log("PieChartComponent: 开始加载数据...");
+    await this.loadData();
+    window.addEventListener('resize', this.handleResize);
+    console.log("PieChartComponent: 数据加载完成，子组件已渲染");
   },
   beforeUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
-    }
+    window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      if (this.$refs.chart) {
+        this.$refs.chart.resize?.();
+      }
+    },
+    async loadData() {
+      this.loading = true;
+      this.error = null;
+      
+      try {
+        const jsonData = await import("/src/assets/merged_data.json");
+        const years = Object.keys(jsonData.default);
+        
+        if (!years.length) {
+          throw new Error('数据加载失败：没有年份数据');
+        }
+
+        // GDP对数变换数据
+        this.views[0].data = years.map((year) => ({
+          year,
+          value: jsonData.default[year]["GDP(对数变换)"],
+        }));
+
+        // 人口与GDP关系数据
+        this.views[1].data = years.map((year) => ({
+          year,
+          gdp: jsonData.default[year]["GDP(对数变换)"],
+          population: jsonData.default[year]["年末总人口(万人)"],
+          youngPop: jsonData.default[year]["0-14岁人口(万人)"],
+          workingPop: jsonData.default[year]["15-64岁人口(万人)"],
+          elderlyPop: jsonData.default[year]["65岁及以上人口(万人)"],
+          dependencyRatio: jsonData.default[year]["总抚养比(%)"],
+        }));
+
+        // 三大产业数据（1952年后）
+        this.views[2].data = years
+          .filter((year) => parseInt(year) >= 1952)
+          .map((year) => ({
+            year,
+            primary: jsonData.default[year]["第一产业增加值(亿元)"],
+            secondary: jsonData.default[year]["第二产业增加值(亿元)"],
+            tertiary: jsonData.default[year]["第三产业增加值(亿元)"],
+            perCapita: jsonData.default[year]["人均国内生产总值(元)"],
+            primaryContrib: jsonData.default[year]["第一产业对GDP的贡献率(%)_x"],
+            secondaryContrib: jsonData.default[year]["第二产业对GDP的贡献率(%)_x"],
+            tertiaryContrib: jsonData.default[year]["第三产业对GDP的贡献率(%)_x"],
+          }));
+
+        console.log("数据加载成功:", this.views);
+      } catch (error) {
+        console.error("数据加载错误:", error);
+        this.error = `数据加载失败: ${error.message}`;
+      } finally {
+        this.loading = false;
+      }
+    },
+    switchView(index) {
+      const totalViews = this.views.length;
+      this.currentViewIndex = (index + totalViews) % totalViews;
+    },
   },
 };
 </script>
 
 <style scoped>
-#pie-chart {
+.pie-chart-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 100%;
+  height: 50vh;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  background: transparent
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: calc(100vh - 60px);
+  position: relative;
+  background: transparent
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.chart-header h2 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  min-width: 200px;
+  color: #ffffff;
+}
+
+.prev-btn,
+.next-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0 16px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  min-width: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.prev-btn:active,
+.next-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+  position: absolute;
+  width: 100%;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.loading-state,
+.error-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 100%;
+}
+
+.loading-state {
+  color: #666;
+}
+
+.error-state {
+  color: #ff4444;
+}
+
+:deep(.chart-container) {
+  width: 100%;
+  height: 100% !important;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  background: transparent
 }
 </style>

@@ -7,14 +7,13 @@
     </div>
     <div class="right-column">
       <div class="switch-buttons">
-        <button @click="prevComponent">←</button>
+        <button @click="prevComponent">上一页</button>
         <div class="component-container">
         <IndustryAdded v-if="currentComponent === 'IndustryAdded'" />
-        <IndustryProduct v-else-if="currentComponent === 'IndustryProduct'" />
         <IndustryCapital v-else-if="currentComponent === 'IndustryCapital'" />
         <IndustryEnergy v-else-if="currentComponent === 'IndustryEnergy'" />
         </div>
-        <button @click="nextComponent">→</button>
+        <button @click="nextComponent">下一页</button>
       </div>
     </div>
   </div>
@@ -23,7 +22,6 @@
 <script>
 import IndustryProvince from '../components/IndustryProvince.vue';
 import IndustryAdded from '../components/IndustryAdded.vue';
-import IndustryProduct from '../components/IndustryProduct.vue';
 import IndustryCapital from '../components/IndustryCapital.vue';
 import IndustryEnergy from '../components/IndustryEnergy.vue';
 
@@ -32,7 +30,6 @@ export default {
   components: {
 	IndustryProvince,
 	IndustryAdded,
-	IndustryProduct,
 	IndustryCapital,
 	IndustryEnergy
   },
@@ -43,12 +40,12 @@ export default {
   },
   methods: {
     prevComponent() {
-    const components = ['IndustryAdded','IndustryProduct', 'IndustryCapital', 'IndustryEnergy'];
+    const components = ['IndustryAdded', 'IndustryCapital', 'IndustryEnergy'];
     const currentIndex = components.indexOf(this.currentComponent);
     this.currentComponent = components[(currentIndex - 1 + components.length) % components.length];
   },
   nextComponent() {
-    const components = ['IndustryAdded','IndustryProduct', 'IndustryCapital', 'IndustryEnergy'];
+    const components = ['IndustryAdded', 'IndustryCapital', 'IndustryEnergy'];
     const currentIndex = components.indexOf(this.currentComponent);
     this.currentComponent = components[(currentIndex + 1) % components.length];
   }
@@ -59,7 +56,7 @@ export default {
 <style scoped>
 .dashboard {
   display: flex;
-  height: 100vh;
+  height: 90vh;
 }
 
 .left-column {

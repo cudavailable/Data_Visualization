@@ -85,8 +85,7 @@ export default {
 <style scoped>
 /* 页面整体样式 */
 .section {
-  height: 100vh;
-  background-color: #ffffff;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;

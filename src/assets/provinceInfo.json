@@ -1,0 +1,954 @@
+{
+  "吉林省": {
+    "description": "吉林省位于中国东北地区，是中国重要的工业和农业基地，素有'东北粮仓'之称。工业以汽车制造、石化工业为主导。",
+    "keyPoints": [
+      "汽车工业基地",
+      "重要商品粮基地",
+      "新能源产业发展迅速",
+      "冰雪旅游胜地"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "汽车制造业",
+        "石油化工",
+        "农产品加工业",
+        "装备制造业"
+      ],
+      "majorCompanies": [
+        "中国第一汽车集团",
+        "吉林石化公司",
+        "修正药业集团"
+      ]
+    },
+    "statistics": {
+      "population": "约2400万人",
+      "area": "187400平方公里",
+      "gdp": "12311.3亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/jilin.png"
+  },
+  "黑龙江省": {
+    "description": "黑龙江省是中国最北的省份，拥有丰富的自然资源和独特的生态环境。是重要的粮食、能源和重工业基地。",
+    "keyPoints": [
+      "商品粮生产基地",
+      "重要能源基地",
+      "生态旅游资源丰富",
+      "对俄贸易前沿"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "农业及食品加工",
+        "装备制造业",
+        "能源工业",
+        "生态旅游"
+      ],
+      "majorCompanies": [
+        "哈电集团",
+        "北大荒集团",
+        "龙江森工"
+      ]
+    },
+    "statistics": {
+      "population": "约3100万人",
+      "area": "473000平方公里",
+      "gdp": "13698.2亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/heilongjiang.png"
+  },
+  "辽宁省": {
+    "description": "辽宁省是中国东北地区唯一的沿海省份，是东北老工业基地的核心区域，拥有完整的工业体系。",
+    "keyPoints": [
+      "东北重要工业基地",
+      "沿海开放前沿",
+      "交通运输枢纽",
+      "科教资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "装备制造业",
+        "石油化工",
+        "冶金工业",
+        "现代服务业"
+      ],
+      "majorCompanies": [
+        "华晨汽车",
+        "鞍钢集团",
+        "大连港集团"
+      ]
+    },
+    "statistics": {
+      "population": "约4200万人",
+      "area": "148000平方公里",
+      "gdp": "28975.8亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/liaoning.png"
+  },
+"河北省": {
+    "description": "河北省地处华北平原，环绕首都北京和天津，是中国重要的工业基地和农业大省。",
+    "keyPoints": [
+      "环京津的战略位置",
+      "钢铁生产大省",
+      "北方重要粮食基地",
+      "拥有丰富的文化遗产"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "钢铁工业",
+        "装备制造业",
+        "能源工业",
+        "现代服务业"
+      ],
+      "majorCompanies": [
+        "河北钢铁集团",
+        "长城汽车",
+        "冀中能源集团"
+      ]
+    },
+    "statistics": {
+      "population": "约7600万人",
+      "area": "187700平方公里",
+      "gdp": "40391.4亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/hebei.png"
+  },
+  "山西省": {
+    "description": "山西省是中国的重要能源大省，煤炭资源丰富，被称为'煤海'，同时也是中华民族的文化发源地之一。",
+    "keyPoints": [
+      "能源基地",
+      "历史文化名城",
+      "世界文化遗产众多",
+      "旅游资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "煤炭工业",
+        "冶金工业",
+        "装备制造业",
+        "文化旅游产业"
+      ],
+      "majorCompanies": [
+        "同煤集团",
+        "潞安化工集团",
+        "山西焦煤集团"
+      ]
+    },
+    "statistics": {
+      "population": "约3500万人",
+      "area": "156700平方公里",
+      "gdp": "21237.4亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/shanxi.png"
+  },
+  "内蒙古自治区": {
+    "description": "内蒙古自治区位于中国北方边疆，拥有广袤的草原和丰富的自然资源，是重要的畜牧业和能源基地。",
+    "keyPoints": [
+      "中国重要的畜牧业基地",
+      "煤炭、稀土等资源丰富",
+      "草原文化独具特色",
+      "中蒙边境贸易门户"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "能源工业",
+        "畜牧业",
+        "农产品加工业",
+        "旅游业"
+      ],
+      "majorCompanies": [
+        "伊利集团",
+        "蒙牛乳业",
+        "包钢集团"
+      ]
+    },
+    "statistics": {
+      "population": "约2400万人",
+      "area": "1183000平方公里",
+      "gdp": "19865.3亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/neimenggu.png"
+  },
+"江苏省": {
+    "description": "江苏省位于中国东部沿海，是经济发达的省份之一，素有'鱼米之乡'之称，拥有繁荣的制造业和现代服务业。",
+    "keyPoints": [
+      "中国经济总量第二大省",
+      "制造业强省",
+      "高新技术产业发达",
+      "历史文化底蕴深厚"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "制造业",
+        "电子信息产业",
+        "石化工业",
+        "现代服务业"
+      ],
+      "majorCompanies": [
+        "中天科技",
+        "华为南京研究所",
+        "苏宁易购"
+      ]
+    },
+    "statistics": {
+      "population": "约8500万人",
+      "area": "102600平方公里",
+      "gdp": "122875.3亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/jiangsu.png"
+  },
+  "浙江省": {
+    "description": "浙江省位于中国东南沿海，以民营经济发达著称，是中国经济最具活力的地区之一。",
+    "keyPoints": [
+      "民营经济的摇篮",
+      "互联网经济发达",
+      "山水旅游资源丰富",
+      "中国电子商务中心"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "民营经济",
+        "电子商务",
+        "制造业",
+        "旅游业"
+      ],
+      "majorCompanies": [
+        "阿里巴巴集团",
+        "吉利汽车",
+        "万向集团"
+      ]
+    },
+    "statistics": {
+      "population": "约6500万人",
+      "area": "105500平方公里",
+      "gdp": "80209.6亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/zhejiang.png"
+  },
+  "安徽省": {
+    "description": "安徽省位于中国东部地区，地处长江中下游，是长三角一体化的重要成员省份，以农业和制造业为主。",
+    "keyPoints": [
+      "长三角一体化成员",
+      "农业大省",
+      "科技创新能力提升",
+      "旅游资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "农业及农产品加工",
+        "制造业",
+        "高新技术产业",
+        "文化旅游产业"
+      ],
+      "majorCompanies": [
+        "中国科大附属企业",
+        "奇瑞汽车",
+        "海螺集团"
+      ]
+    },
+    "statistics": {
+      "population": "约6100万人",
+      "area": "140100平方公里",
+      "gdp": "45581.6亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/anhui.png"
+  },
+"福建省": {
+    "description": "福建省位于中国东南沿海，是对台交流的重要窗口，拥有丰富的侨乡文化和自然资源。",
+    "keyPoints": [
+      "海峡两岸交流中心",
+      "华侨之乡",
+      "高山与海洋共存",
+      "茶文化发源地"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "电子信息产业",
+        "机械制造",
+        "石化工业",
+        "现代农业"
+      ],
+      "majorCompanies": [
+        "紫金矿业",
+        "宁德时代",
+        "安踏集团"
+      ]
+    },
+    "statistics": {
+      "population": "约4100万人",
+      "area": "121400平方公里",
+      "gdp": "53146.2亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/fujian.png"
+  },
+  "江西省": {
+    "description": "江西省地处中国东南部，长江中游南岸，以“红色摇篮”著称，同时也是矿产资源丰富的省份。",
+    "keyPoints": [
+      "中国革命发源地",
+      "矿产资源丰富",
+      "陶瓷文化历史悠久",
+      "风景名胜众多"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "有色金属产业",
+        "新能源产业",
+        "制造业",
+        "文化旅游业"
+      ],
+      "majorCompanies": [
+        "江铃汽车",
+        "赣锋锂业",
+        "景德镇陶瓷集团"
+      ]
+    },
+    "statistics": {
+      "population": "约4600万人",
+      "area": "166900平方公里",
+      "gdp": "31985.3亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/jiangxi.png"
+  },
+  "山东省": {
+    "description": "山东省位于中国东部沿海，是中华文化的重要发源地，以经济发达、文化底蕴深厚著称。",
+    "keyPoints": [
+      "孔子故里",
+      "海洋经济强省",
+      "农业和工业齐头并进",
+      "物流交通枢纽"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "高端装备制造",
+        "海洋经济",
+        "现代农业",
+        "新能源产业"
+      ],
+      "majorCompanies": [
+        "海尔集团",
+        "潍柴动力",
+        "中车四方"
+      ]
+    },
+    "statistics": {
+      "population": "约10100万人",
+      "area": "157100平方公里",
+      "gdp": "83194.9亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/shandong.png"
+  },
+"河南省": {
+    "description": "河南省位于中国中部，是中华民族和中华文明的重要发源地，素有“中原粮仓”之称。",
+    "keyPoints": [
+      "中华文明发源地",
+      "重要粮食生产基地",
+      "交通枢纽",
+      "矿产资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "粮食加工",
+        "装备制造业",
+        "能源工业",
+        "现代服务业"
+      ],
+      "majorCompanies": [
+        "双汇集团",
+        "宇通客车",
+        "洛阳钼业"
+      ]
+    },
+    "statistics": {
+      "population": "约9900万人",
+      "area": "167000平方公里",
+      "gdp": "58902.6亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/henan.png"
+  },
+  "湖北省": {
+    "description": "湖北省地处中国中部，被长江贯穿，是中国重要的农业、工业和交通中心。",
+    "keyPoints": [
+      "长江中游经济带核心",
+      "“鱼米之乡”",
+      "现代制造业基地",
+      "科教资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "汽车制造业",
+        "光电子信息产业",
+        "生物医药",
+        "现代农业"
+      ],
+      "majorCompanies": [
+        "东风汽车",
+        "华新水泥",
+        "九州通医药集团"
+      ]
+    },
+    "statistics": {
+      "population": "约5800万人",
+      "area": "185900平方公里",
+      "gdp": "53799.7亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/hubei.png"
+  },
+  "湖南省": {
+    "description": "湖南省位于中国中南部，是中国重要的粮食生产基地，因多山而被称为“潇湘之地”。",
+    "keyPoints": [
+      "粮食生产大省",
+      "工程机械制造业发达",
+      "历史文化名城",
+      "生态旅游资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "粮食加工",
+        "工程机械",
+        "有色金属产业",
+        "旅游业"
+      ],
+      "majorCompanies": [
+        "中联重科",
+        "三一集团",
+        "湖南黄金集团"
+      ]
+    },
+    "statistics": {
+      "population": "约6600万人",
+      "area": "211800平方公里",
+      "gdp": "47449.2亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/hunan.png"
+  },
+"广东省": {
+    "description": "广东省位于中国南部沿海，是中国经济最发达的省份之一，改革开放的前沿，拥有庞大的制造业和服务业体系。",
+    "keyPoints": [
+      "中国经济第一大省",
+      "制造业全球领先",
+      "改革开放前沿",
+      "粤港澳大湾区核心"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "电子信息产业",
+        "先进制造业",
+        "金融服务业",
+        "现代物流业"
+      ],
+      "majorCompanies": [
+        "华为",
+        "腾讯",
+        "比亚迪"
+      ]
+    },
+    "statistics": {
+      "population": "约12600万人",
+      "area": "179800平方公里",
+      "gdp": "129157.3亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/guangdong.png"
+  },
+  "广西壮族自治区": {
+    "description": "广西壮族自治区位于中国南部，是连接东南亚的重要门户，拥有丰富的自然资源和独特的少数民族文化。",
+    "keyPoints": [
+      "对东南亚开放门户",
+      "少数民族文化丰富",
+      "农业与轻工业发达",
+      "旅游资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "农业及农产品加工",
+        "轻工业",
+        "矿产资源开发",
+        "旅游业"
+      ],
+      "majorCompanies": [
+        "柳工集团",
+        "南宁糖业",
+        "广西玉柴"
+      ]
+    },
+    "statistics": {
+      "population": "约5000万人",
+      "area": "237600平方公里",
+      "gdp": "25235.7亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/guangxi.png"
+  },
+  "海南省": {
+    "description": "海南省是中国唯一的热带岛屿省份，是生态环境优越的国际旅游岛，同时也是自贸港的试点区域。",
+    "keyPoints": [
+      "国际旅游岛",
+      "中国自贸港试点",
+      "热带农业发达",
+      "海洋经济新兴地"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "旅游业",
+        "热带农业",
+        "海洋经济",
+        "现代服务业"
+      ],
+      "majorCompanies": [
+        "海航集团",
+        "罗牛山",
+        "椰树集团"
+      ]
+    },
+    "statistics": {
+      "population": "约1000万人",
+      "area": "35400平方公里",
+      "gdp": "6818.6亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/hainan.png"
+  },
+"四川省": {
+    "description": "四川省位于中国西南地区，是中国的人口大省、农业大省和资源大省，享有“天府之国”的美誉。",
+    "keyPoints": [
+      "天府之国",
+      "人口大省",
+      "科技教育强省",
+      "旅游资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "电子信息产业",
+        "装备制造业",
+        "现代农业",
+        "文化旅游业"
+      ],
+      "majorCompanies": [
+        "长虹集团",
+        "五粮液集团",
+        "新希望集团"
+      ]
+    },
+    "statistics": {
+      "population": "约8300万人",
+      "area": "485000平方公里",
+      "gdp": "59812.7亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/sichuan.png"
+  },
+  "贵州省": {
+    "description": "贵州省位于中国西南地区，以山地为主，是大数据产业发展的先行者，拥有丰富的自然资源和民族文化。",
+    "keyPoints": [
+      "大数据产业先行者",
+      "生态环境优越",
+      "少数民族文化多样",
+      "旅游资源丰富"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "大数据产业",
+        "能源工业",
+        "生态旅游",
+        "现代农业"
+      ],
+      "majorCompanies": [
+        "贵州茅台",
+        "中铝贵州企业",
+        "百灵药业"
+      ]
+    },
+    "statistics": {
+      "population": "约3800万人",
+      "area": "176100平方公里",
+      "gdp": "19941.2亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/guizhou.png"
+  },
+  "云南省": {
+    "description": "云南省位于中国西南边陲，是连接东南亚和南亚的重要门户，因其丰富的生物资源和多样的民族文化而著称。",
+    "keyPoints": [
+      "面向南亚东南亚开放门户",
+      "生物资源丰富",
+      "矿产资源大省",
+      "民族文化多样"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "旅游业",
+        "生物资源开发",
+        "矿业",
+        "跨境贸易"
+      ],
+      "majorCompanies": [
+        "云天化集团",
+        "云南白药集团",
+        "昆钢集团"
+      ]
+    },
+    "statistics": {
+      "population": "约4800万人",
+      "area": "394100平方公里",
+      "gdp": "28723.5亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/yunnan.png"
+  },
+"西藏自治区": {
+    "description": "西藏自治区位于中国西南边陲，平均海拔超过4000米，是世界上海拔最高的地区，以独特的高原风光和藏族文化闻名。",
+    "keyPoints": [
+      "世界屋脊",
+      "高原特色农业",
+      "丰富的旅游资源",
+      "藏传佛教文化中心"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "高原农业",
+        "旅游业",
+        "清洁能源",
+        "藏药产业"
+      ],
+      "majorCompanies": [
+        "西藏藏药集团",
+        "西藏矿业",
+        "西藏旅游股份"
+      ]
+    },
+    "statistics": {
+      "population": "约380万人",
+      "area": "1228400平方公里",
+      "gdp": "2413.6亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/xizang.png"
+  },
+  "陕西省": {
+    "description": "陕西省位于中国西北地区，是中华文明和中华民族的重要发祥地，被誉为“天然历史博物馆”。",
+    "keyPoints": [
+      "历史文化资源丰富",
+      "中国西部科技强省",
+      "能源和高新技术基地",
+      "丝绸之路起点"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "能源工业",
+        "高新技术产业",
+        "装备制造业",
+        "文化旅游业"
+      ],
+      "majorCompanies": [
+        "中煤集团",
+        "中航工业西飞",
+        "隆基绿能科技"
+      ]
+    },
+    "statistics": {
+      "population": "约3900万人",
+      "area": "205800平方公里",
+      "gdp": "32415.9亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/shaanxi.png"
+  },
+  "甘肃省": {
+    "description": "甘肃省位于中国西北地区，是古丝绸之路的重要通道，地形多样，自然资源丰富。",
+    "keyPoints": [
+      "丝绸之路黄金段",
+      "矿产资源丰富",
+      "农业与文化旅游结合",
+      "能源开发基地"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "能源工业",
+        "有色金属",
+        "农业",
+        "文化旅游业"
+      ],
+      "majorCompanies": [
+        "金川集团",
+        "酒泉钢铁公司",
+        "兰州石化"
+      ]
+    },
+    "statistics": {
+      "population": "约2500万人",
+      "area": "454400平方公里",
+      "gdp": "10243.5亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/gansu.png"
+  },
+"青海省": {
+    "description": "青海省位于中国西北地区，是三江源的所在地，被称为“中华水塔”，自然资源丰富，生态环境独特。",
+    "keyPoints": [
+      "中华水塔",
+      "盐湖资源丰富",
+      "清洁能源开发",
+      "生态旅游热门地"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "盐湖化工",
+        "清洁能源",
+        "矿产开发",
+        "生态旅游"
+      ],
+      "majorCompanies": [
+        "青海盐湖工业集团",
+        "西部矿业",
+        "青海柴达木开发建设公司"
+      ]
+    },
+    "statistics": {
+      "population": "约600万人",
+      "area": "721700平方公里",
+      "gdp": "3611.2亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/qinghai.png"
+  },
+  "宁夏回族自治区": {
+    "description": "宁夏回族自治区位于中国西北地区，是我国重要的少数民族聚居区，以农业和能源工业为主。",
+    "keyPoints": [
+      "中国穆斯林文化中心",
+      "优质农产品基地",
+      "新能源产业发展迅速",
+      "葡萄酒产业著名"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "煤化工",
+        "新能源产业",
+        "现代农业",
+        "葡萄酒酿造"
+      ],
+      "majorCompanies": [
+        "宁夏煤业集团",
+        "国电英力特",
+        "贺兰山葡萄酒庄"
+      ]
+    },
+    "statistics": {
+      "population": "约700万人",
+      "area": "66400平方公里",
+      "gdp": "4515.7亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/ningxia.png"
+  },
+  "新疆维吾尔自治区": {
+    "description": "新疆维吾尔自治区位于中国西北边陲，是中国面积最大的省级行政区，资源丰富，对外开放程度高。",
+    "keyPoints": [
+      "中国面积最大省份",
+      "能源与矿产资源丰富",
+      "丝绸之路经济带核心",
+      "民族文化多样"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "石油化工",
+        "农业与棉花种植",
+        "矿产资源开发",
+        "文化旅游业"
+      ],
+      "majorCompanies": [
+        "新疆广汇集团",
+        "特变电工",
+        "中泰化学"
+      ]
+    },
+    "statistics": {
+      "population": "约2600万人",
+      "area": "1664900平方公里",
+      "gdp": "15915.2亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/xinjiang.png"
+  },
+"香港特别行政区": {
+    "description": "香港特别行政区是中国的特别行政区之一，位于珠江口以东，是重要的国际金融、航运和贸易中心。",
+    "keyPoints": [
+      "国际金融中心",
+      "自由贸易港",
+      "中西文化交融",
+      "全球知名的购物天堂"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "金融服务业",
+        "贸易与物流",
+        "专业服务与创新科技",
+        "旅游业"
+      ],
+      "majorCompanies": [
+        "汇丰银行",
+        "港铁公司",
+        "长江实业"
+      ]
+    },
+    "statistics": {
+      "population": "约740万人",
+      "area": "1106平方公里",
+      "gdp": "29757.1亿元港币(2022年)"
+    },
+    "image": "/src/assets/province-images/hongkong.png"
+  },
+  "澳门特别行政区": {
+    "description": "澳门特别行政区是中国的特别行政区之一，位于珠江口西岸，以博彩和旅游业为经济支柱。",
+    "keyPoints": [
+      "世界四大赌城之一",
+      "中西方文化交融",
+      "旅游与会展经济发达",
+      "中葡文化交流中心"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "博彩业",
+        "旅游业",
+        "金融服务业",
+        "文化创意产业"
+      ],
+      "majorCompanies": [
+        "澳门博彩控股公司",
+        "银河娱乐集团",
+        "新濠博亚娱乐"
+      ]
+    },
+    "statistics": {
+      "population": "约68万人",
+      "area": "33平方公里",
+      "gdp": "2073.7亿元澳门币(2022年)"
+    },
+    "image": "/src/assets/province-images/macau.png"
+  },
+  "台湾省": {
+    "description": "台湾省位于中国东南沿海，是中国的重要省份，以电子制造业发达和丰富的自然景观著称。",
+    "keyPoints": [
+      "全球半导体产业核心",
+      "农业与工业并重",
+      "自然景观丰富",
+      "文化多元融合"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "电子信息产业",
+        "机械制造",
+        "石化工业",
+        "旅游业"
+      ],
+      "majorCompanies": [
+        "台积电",
+        "鸿海精密",
+        "中钢集团"
+      ]
+    },
+    "statistics": {
+      "population": "约2350万人",
+      "area": "36193平方公里",
+      "gdp": "61905亿元人民币(2022年)"
+    },
+    "image": "/src/assets/province-images/taiwan.png"
+  },
+"北京市": {
+    "description": "北京市是中华人民共和国的首都，是全国的政治、文化和国际交流中心，同时也是科技创新的前沿。",
+    "keyPoints": [
+      "中国首都",
+      "国际交流中心",
+      "科技创新高地",
+      "历史文化名城"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "高端服务业",
+        "信息技术产业",
+        "文化创意产业",
+        "现代金融业"
+      ],
+      "majorCompanies": [
+        "百度",
+        "字节跳动",
+        "京东"
+      ]
+    },
+    "statistics": {
+      "population": "约2200万人",
+      "area": "16410平方公里",
+      "gdp": "43161.1亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/beijing.png"
+  },
+  "上海市": {
+    "description": "上海市是中国最大的经济中心城市，长三角地区的龙头城市，以国际金融、贸易和航运中心著称。",
+    "keyPoints": [
+      "中国经济中心",
+      "国际金融中心",
+      "全球航运枢纽",
+      "文化交融大都市"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "金融服务业",
+        "高端制造业",
+        "贸易与物流",
+        "文化创意产业"
+      ],
+      "majorCompanies": [
+        "浦发银行",
+        "中芯国际",
+        "复星集团"
+      ]
+    },
+    "statistics": {
+      "population": "约2500万人",
+      "area": "6340平方公里",
+      "gdp": "44652.8亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/shanghai.png"
+  },
+  "天津市": {
+    "description": "天津市是中国的四个直辖市之一，环渤海地区的重要经济中心和北方的国际港口城市。",
+    "keyPoints": [
+      "北方国际航运中心",
+      "先进制造业基地",
+      "历史文化名城",
+      "滨海新区发展"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "装备制造业",
+        "石化工业",
+        "金融服务业",
+        "生物医药"
+      ],
+      "majorCompanies": [
+        "长城汽车",
+        "天津港集团",
+        "天士力医药集团"
+      ]
+    },
+    "statistics": {
+      "population": "约1380万人",
+      "area": "11760平方公里",
+      "gdp": "16219.1亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/tianjin.png"
+  },
+  "重庆市": {
+    "description": "重庆市是中国中西部地区的经济中心、长江上游的航运枢纽，享有“山城”之称。",
+    "keyPoints": [
+      "西部经济中心",
+      "长江上游航运枢纽",
+      "汽车与电子产业基地",
+      "文化旅游胜地"
+    ],
+    "economy": {
+      "pillarIndustries": [
+        "汽车制造业",
+        "电子信息产业",
+        "现代物流业",
+        "文化旅游产业"
+      ],
+      "majorCompanies": [
+        "长安汽车",
+        "重庆医药集团",
+        "宗申产业集团"
+      ]
+    },
+    "statistics": {
+      "population": "约3200万人",
+      "area": "82400平方公里",
+      "gdp": "29129.0亿元(2022年)"
+    },
+    "image": "/src/assets/province-images/chongqing.png"
+  }
+}

@@ -284,14 +284,9 @@ export default {
 .map-container {
   width: 100%;
   height: 100%;
-  background-image: url('src/assets/back.png'); /* 替换为你的图片路径 */
-  background-size: cover; /* 图片铺满容器 */
-  background-position: center; /* 图片居中显示 */
-  background-repeat: no-repeat; /* 不重复图片 */
-  border-radius: 8px; /* 可选，添加圆角 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 可选，添加阴影 */
   display: flex;
   flex-direction: column; /* 改为纵向布局 */
+  
 }
 
 .map-title {
@@ -309,3 +304,4 @@ export default {
   height: calc(100% - 60px); /* 剩余高度分配给地图 */
 }
 </style>
+

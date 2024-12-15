@@ -1,7 +1,7 @@
 <template>
 	<div class="explain">
-		<h3>我国能源资本投入</h3>
-		<h4>	中国工业在早期面临着资金匮乏的困境。在近代中国，工业基础薄弱，国内资金有限，这导致了我国工业发展的滞后。然而，随着时间的推移，中国政府和企业逐渐认识到资金对于工业发展的重要性，并采取了一系列措施来解决资金匮乏的问题。如今，我国工业已经完成了从无到有、从弱到强的发展过程，我国对工业的资本投入也在不断增加、优化。</h4>
+		<h3>我国工业资本投入（亿元）</h3>
+		<h4>	中国工业在早期面临着资金匮乏的困境。在近代中国，工业基础薄弱，国内资金有限，导致了我国工业发展的滞后。然而随着时间的推移，中国政府和企业逐渐认识到资金对于工业发展的重要性，并采取了一系列措施来解决资金匮乏的问题。如今，我国工业已经完成了从无到有、从弱到强的发展过程。</h4>
 	</div>
 	<div ref="chartDom" id="chartDom" style="width: 100%;height: 100%;"></div>
 </template>
@@ -14,9 +14,9 @@
 	  mounted() {
 	    const myChart = echarts.init(this.$refs.chartDom); 
 	    myChart.setOption({ 
-			title: {
+			/*title: {
 			    text: '工业资本投入（亿元）'
-			  },
+			  },*/
 			  tooltip: {
 			    trigger: 'axis',
 			    axisPointer: {
@@ -27,12 +27,14 @@
 			    }
 			  },
 			  legend: {
-			    data: ['国家', '外商', '集体', '法人', '个人']
-			  },
-			  toolbox: {
-			    feature: {
-			      saveAsImage: {}
-			    }
+			    data: ['国家', '外商', '集体', '法人', '个人'],
+			            selected: { // 设置默认选中的系列
+			              '国家': true,
+			              '外商': true,
+			              '集体': false,
+			              '法人': false,
+			              '个人': false
+			            }
 			  },
 			  grid: {
 			    left: '3%',
@@ -49,7 +51,12 @@
 			  ],
 			  yAxis: [
 			    {
-			      type: 'value'
+			      type: 'value',
+				  axisLine: {
+              lineStyle: {
+                color: '#fff'
+              }
+            }
 			    }
 			  ],
 			  series: [

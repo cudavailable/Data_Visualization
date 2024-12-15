@@ -1,4 +1,5 @@
 <template>
+  <page-layout>
   <div class="economy-overview">
     <!-- 上方区域 -->
     <div class="top-container">
@@ -16,37 +17,32 @@
       <!-- 右侧内容 -->
       <div class="right-container">
         <!-- 省份地图 -->
-        <div class="province-info">
-          <EchartsMap
-            :data="selectedProvinceMap"
-            :color="selectedProvinceColor"
-          />
-        </div>
-
-        <!-- 饼图 -->
-        <div class="pie-chart-container">
-          <PieChartComponent
-            :data="gdpDataByYear"
-            :year="selectedYear"
-            :province="selectedProvinceName"
-          />
-        </div>
+        <PieChartComponent />
       </div>
     </div>
 
     <!-- 底部河流图 -->
     <div class="footer">
-      <RiverChartComponent
-        ref="riverChart"
-        :year="selectedYear"
-        :minYear="minYear"
-        :maxYear="maxYear"
-        :gdpDataByYear="gdpDataByYear"
-        :selectedProvince="selectedProvinceName"
-        @yearChange="handleYearChange"
-      />
+		<div class="province-info">
+		  <EchartsMap
+		    :data="selectedProvinceMap"
+		    :color="selectedProvinceColor"
+		  />
+		</div>
+		<div class="pie">
+		<RiverChartComponent
+			ref="riverChart"
+			:year="selectedYear"
+			:minYear="minYear"
+			:maxYear="maxYear"
+			:gdpDataByYear="gdpDataByYear"
+			:selectedProvince="selectedProvinceName"
+			@yearChange="handleYearChange"
+		/>
+		</div>
     </div>
   </div>
+</page-layout>
 </template>
 
 
@@ -55,6 +51,7 @@ import GDPMap from "../components/GDPMap.vue";
 import PieChartComponent from "../components/PieChartComponent.vue";
 import EchartsMap from "../components/EchartsMap.vue";
 import RiverChartComponent from "../components/RiverChartComponent.vue";
+import PageLayout from '../components/PageLayout.vue'
 
 export default {
   name: "EconomyOverview",
@@ -199,7 +196,6 @@ export default {
   flex-direction: column;
   height: 90vh; /* 整个屏幕高度 */
   width: 100%;
-  background-color: #fff6f0;
   margin: 0; /* 去除外边距 */
   padding: 0; /* 去除内边距 */
   overflow: hidden; /* 防止内容溢出 */
@@ -208,51 +204,52 @@ export default {
 
 .top-container {
   display: flex;
-  height: 70%; /* 上方区域占屏幕的 65% */
+  height: 65%; /* 上方区域占屏幕的 65% */
   box-sizing: border-box;
 }
 
 .map-container {
-  flex: 3; /* 左侧 GDPMap 占 3/5 宽度 */
-  background-color: #ffffff;
+  flex: 2; /* 左侧 GDPMap 占 3/5 宽度 */
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.right-container {
-  flex: 2; /* 右侧内容占 2/5 宽度 */
-  display: flex;
-  flex-direction: column;
 }
 
 .province-info {
   flex: 1; /* 省份地图占右侧竖向 1/3 */
-  background-color: #ee7b7b;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
   justify-content: center;
   align-items: center;
+  display: flex;
+  height: 150%;
+}
+
+.right-container {
+  flex: 3; /* 右侧内容占宽度比例 */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 确保父容器高度为 100% */
 }
 
 .pie-chart-container {
-  flex: 2; /* 饼图占右侧竖向 2/3 */
-  background-color: #FADFA1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 2; /* 饼图占父容器比例 */
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%; /* 确保饼图容器有高度 */
+}
+.pie{
+	flex:3;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	height: 150%;
 }
 
 .footer {
-  height: 20%; /* 底部河流图占屏幕的 35% */
-  background-color: #FFF4EA;
+  height: 25%; /* 底部河流图占屏幕的 35% */
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  
 }
 
 </style>
