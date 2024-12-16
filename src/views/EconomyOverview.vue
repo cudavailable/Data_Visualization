@@ -140,10 +140,9 @@ export default {
         return;
       }
 
-      const provinceMapFile = `/assets/${fileName}.json`;
       // const provinceMapFile = `/assets/provinces/${fileName}.json`;
-      // const baseUrl = import.meta.env.BASE_URL || '/';
-      // const provinceMapFile = `${baseUrl}assets/${fileName}.json`;  
+      const baseUrl = import.meta.env.BASE_URL || '/';
+      const provinceMapFile = `${baseUrl}assets/provinces/${fileName}.json`;  
       fetch(provinceMapFile)
         .then((response) => {
           if (!response.ok) throw new Error(`文件 ${fileName} 不存在`);
