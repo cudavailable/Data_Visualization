@@ -80,7 +80,7 @@ export default {
   methods: {
     async loadGDPData() {
       try {
-        const response = await fetch("/src/assets/gdpDataByYear.json");
+        const response = await fetch("/assets/gdpDataByYear.json");
         if (!response.ok) throw new Error("无法加载 GDP 数据！");
         const data = await response.json();
         console.log("Loaded GDP Data:", data);
@@ -128,23 +128,6 @@ export default {
       }
     },
 
-    // loadProvinceMap(fileName) {
-    //   // 使用 import.meta.glob 来动态导入 JSON 文件
-    //   const provinceFiles = import.meta.glob('@/assets/provinces/*.json');
-
-    //   // 获取指定的 province JSON 文件
-    //   const filePath = '@/assets/provinces/${fileName}.json';
-    //   if (provinceFiles[filePath]) {
-    //     provinceFiles[filePath]().then((provinceGeoJSON) => {
-    //       this.selectedProvinceMap = provinceGeoJSON.default;
-    //       console.log(`Loaded map data for ${fileName}`);
-    //     }).catch((error) => {
-    //       console.error(`加载 ${fileName} 地图数据时出错:`, error);
-    //     });
-    //   } else {
-    //     console.error(`找不到 ${fileName} 的地图数据`);
-    //   }
-    // },
     loadProvinceMap(provinceName) {
       const fileName = this.getFileName(provinceName);
       if (!fileName) {
@@ -152,7 +135,7 @@ export default {
         return;
       }
 
-      const provinceMapFile = `/src/assets/provinces/${fileName}.json`;
+      const provinceMapFile = `/assets/provinces/${fileName}.json`;
       fetch(provinceMapFile)
         .then((response) => {
           if (!response.ok) throw new Error(`文件 ${fileName} 不存在`);
