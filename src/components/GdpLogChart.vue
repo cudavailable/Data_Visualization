@@ -47,7 +47,7 @@
 <script>
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import * as echarts from 'echarts';
-import historicalEvents from '/src/assets/gdp-events.json';
+import historicalEvents from '@/assets/gdp-events.json';
 
 export default {
   name: 'GdpLogChart',
