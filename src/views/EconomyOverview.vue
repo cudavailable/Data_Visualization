@@ -127,6 +127,24 @@ export default {
         this.selectedProvinceColor = color;
       }
     },
+
+    // loadProvinceMap(fileName) {
+    //   // 使用 import.meta.glob 来动态导入 JSON 文件
+    //   const provinceFiles = import.meta.glob('@/assets/provinces/*.json');
+
+    //   // 获取指定的 province JSON 文件
+    //   const filePath = '@/assets/provinces/${fileName}.json';
+    //   if (provinceFiles[filePath]) {
+    //     provinceFiles[filePath]().then((provinceGeoJSON) => {
+    //       this.selectedProvinceMap = provinceGeoJSON.default;
+    //       console.log(`Loaded map data for ${fileName}`);
+    //     }).catch((error) => {
+    //       console.error(`加载 ${fileName} 地图数据时出错:`, error);
+    //     });
+    //   } else {
+    //     console.error(`找不到 ${fileName} 的地图数据`);
+    //   }
+    // },
     loadProvinceMap(provinceName) {
       const fileName = this.getFileName(provinceName);
       if (!fileName) {

@@ -7,7 +7,9 @@
 
 <script>
 import * as echarts from "echarts";
-import clustersData from "/src/assets/clusters.json";
+import clustersData from "@/assets/clusters.json";
+// import chinaMapPath from "@/assets/china.json";
+import chinaGeoJSON from "@/assets/china.json";
 
 export default {
   name: "GDPMap",
@@ -92,16 +94,24 @@ export default {
   methods: {
     // 加载中国地图数据
     loadChinaMap() {
-      fetch("/src/assets/china.json")
-        .then((response) => response.json())
-        .then((geoJSON) => {
-          echarts.registerMap("china", geoJSON);
-          this.initChart();
-        })
-        .catch((error) => {
-          console.error("加载中国地图数据时出错:", error);
-        });
+      try {
+        echarts.registerMap("china", chinaGeoJSON);
+        this.initChart();
+      } catch (error) {
+        console.error("加载中国地图数据时出错:", error);
+      }
     },
+    // loadChinaMap() {
+    //   fetch(chinaMapPath)
+    //     .then((response) => response.json())
+    //     .then((geoJSON) => {
+    //       echarts.registerMap("china", geoJSON);
+    //       this.initChart();
+    //     })
+    //     .catch((error) => {
+    //       console.error("加载中国地图数据时出错:", error);
+    //     });
+    // },
     // 初始化图表
     initChart() {
       const mapContainer = document.getElementById("gdp-map");
@@ -152,13 +162,10 @@ export default {
           ? provinceData.itemStyle?.areaColor || "#CCCCCC"
           : "#CCCCCC";
 
-        const provinceFile = `/src/assets/provinces/${fileName}.json`;
-        fetch(provinceFile)
-          .then((response) => {
-            if (!response.ok) throw new Error(`文件 ${fileName} 不存在`);
-            return response.json();
-          })
+        // 使用动态 `import` 加载 JSON 数据
+        import(/* @vite-ignore */ `@/assets/provinces/${fileName}.json`)
           .then((provinceGeoJSON) => {
+            // 触发事件并传递数据
             this.$emit("provinceClick", provinceName);
             this.$emit("provinceMapData", provinceGeoJSON);
             this.$emit("provinceColor", {
@@ -170,6 +177,41 @@ export default {
             console.error(`加载 ${provinceName} 地图数据时出错:`, error);
           });
       });
+
+      // this.chart.on("click", (params) => {
+      //   const provinceName = params.name;
+      //   const fileName = this.provinceFileMap[provinceName];
+
+      //   if (!fileName) {
+      //     console.error(`无法找到 ${provinceName} 的文件映射`);
+      //     return;
+      //   }
+
+      //   const provinceData = this.chart
+      //     .getOption()
+      //     .series[0].data.find((item) => item.name === provinceName);
+      //   const provinceColor = provinceData
+      //     ? provinceData.itemStyle?.areaColor || "#CCCCCC"
+      //     : "#CCCCCC";
+
+      //   const provinceFile = require(`@/assets/provinces/${fileName}.json`);
+      //   fetch(provinceFile)
+      //     .then((response) => {
+      //       if (!response.ok) throw new Error(`文件 ${fileName} 不存在`);
+      //       return response.json();
+      //     })
+      //     .then((provinceGeoJSON) => {
+      //       this.$emit("provinceClick", provinceName);
+      //       this.$emit("provinceMapData", provinceGeoJSON);
+      //       this.$emit("provinceColor", {
+      //         name: provinceName,
+      //         color: provinceColor,
+      //       });
+      //     })
+      //     .catch((error) => {
+      //       console.error(`加载 ${provinceName} 地图数据时出错:`, error);
+      //     });
+      // });
 
       window.addEventListener("resize", () => {
         this.chart.resize();
