@@ -141,8 +141,9 @@ export default {
       }
 
       // const provinceMapFile = `/assets/provinces/${fileName}.json`;
-      // const baseUrl = import.meta.env.BASE_URL || '/';
-      const provinceMapFile = `${import.meta.env.BASE_URL}assets/provinces/${fileName}.json`;  
+      const baseUrl = import.meta.env.BASE_URL || '/';
+      const provinceMapFile = `${baseUrl}assets/provinces/${fileName}.json`;  
+      // console.log("BASE_URL:", import.meta.env.BASE_URL);
       fetch(provinceMapFile)
         .then((response) => {
           if (!response.ok) throw new Error(`文件 ${fileName} 不存在`);
