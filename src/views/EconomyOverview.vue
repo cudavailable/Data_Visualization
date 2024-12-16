@@ -51,7 +51,9 @@ import GDPMap from "../components/GDPMap.vue";
 import PieChartComponent from "../components/PieChartComponent.vue";
 import EchartsMap from "../components/EchartsMap.vue";
 import RiverChartComponent from "../components/RiverChartComponent.vue";
-import PageLayout from '../components/PageLayout.vue'
+// import PageLayout from '../components/PageLayout.vue'
+
+import gdpData from '@/assets/gdpDataByYear.json';
 
 export default {
   name: "EconomyOverview",
@@ -80,11 +82,14 @@ export default {
   methods: {
     async loadGDPData() {
       try {
-        const response = await fetch("/assets/gdpDataByYear.json");
-        if (!response.ok) throw new Error("无法加载 GDP 数据！");
-        const data = await response.json();
-        console.log("Loaded GDP Data:", data);
-        this.gdpDataByYear = data;
+        // const response = await fetch("/assets/gdpDataByYear.json");
+        // if (!response.ok) throw new Error("无法加载 GDP 数据！");
+        // const data = await response.json();
+        // console.log("Loaded GDP Data:", data);
+        // this.gdpDataByYear = data;
+
+        console.log("Loaded GDP Data:", gdpData);
+        this.gdpDataByYear = gdpData;
 
         // 检查默认年份的数据是否存在
         if (!this.gdpDataByYear[this.selectedYear]) {
